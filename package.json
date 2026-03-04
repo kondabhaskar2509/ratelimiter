@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14",
+    "redis": "^5.11.0"
+  }
+}

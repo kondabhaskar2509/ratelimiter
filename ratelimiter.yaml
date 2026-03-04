@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    volumes:
+      - redis_volume:/data
+    ports:
+      - "6379:6379"
+  redis_gui:
+    image: redislabs/redisinsight:latest
+    container_name: redis_gui
+    volumes:
+      - redis_gui_volume:/db
+    ports:
+      - "8001:5540"
+    depends_on:
+      - redis
+  server:
+    image: ratelimiter
+    container_name: ratelimiter
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+volumes:
+  redis_volume:
+  redis_gui_volume:
